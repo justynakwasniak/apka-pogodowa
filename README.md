@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+Weather App
+Description
+This is a weather application built using Vite, React, JavaScript, TypeScript, HTML, and CSS. The app allows users to:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Search for the weather in any city.
+Use location services to fetch weather data based on their current location.
+The app provides a three-day weather forecast, including today, tomorrow, and the day after. For each day, users can view detailed weather information, such as temperature, humidity, pressure, and wind speed.
 
-Currently, two official plugins are available:
+Features
+City Search: Enter the name of any city to get the current weather and a three-day forecast.
+Current Location: Use the built-in locator to get weather information for your current location.
+Detailed Forecast: View the temperature, humidity, pressure, and wind speed for each of the next three days.
+Aesthetic Design: The app is designed to be both functional and visually appealing, enhancing user experience.
+Technologies Used
+Vite: For fast development and build tools.
+React: For building the user interface.
+JavaScript & TypeScript: For scripting and type safety.
+HTML & CSS: For structuring and styling the app.
+Installation
+Clone the repository:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+bash
 
-## Expanding the ESLint configuration
+git clone https://github.com/justynakwasniak/apka-pogodowa.git
+Navigate to the project directory:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+bash
+Skopiuj kod
+cd apka-pogodowa
+Install dependencies:
 
-- Configure the top-level `parserOptions` property like this:
+bash
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+npm install
+Set up environment variables. Create a .env file in the root directory and add your OpenWeatherMap API key:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Start the development server:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+bash
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+npm run dev
+Open your browser and go to http://localhost:3000 to view the application.
+
+Usage
+Use the search bar to enter a city name and view the weather forecast.
+Click the "Locate Me" button to fetch weather based on your current location.
+Screenshots
+(Insert some screenshots here to showcase the app's UI)
+
+Contributing
+Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or fixes.
+
+
+
+Acknowledgments
+OpenWeatherMap API for providing weather data.
+Vite for the development environment.
+React for the front-end framework.
