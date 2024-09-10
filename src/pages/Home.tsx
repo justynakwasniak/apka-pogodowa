@@ -3,24 +3,57 @@ import WeatherSearch from "../components/WeatherSearch";
 import WeatherCard from "../components/WeatherCard";
 import { ForecastData } from "../weatherTypes";
 import { fetchWeather } from "../api/fetchWeather";
+import rainImage from "../images/rain.avif";
+import sunnyImage from "../images/sunny.avif";
+import snowImage from "../images/snow.avif";
+import cloudyImage from "../images/cloudy.avif";
+
+const getBackgroundImage = (description: string): string => {
+  if (description.includes("rain")) {
+    return `url(${rainImage})`;
+  } else if (description.includes("clear")) {
+    return `url(${sunnyImage})`;
+  } else if (description.includes("snow")) {
+    return `url(${snowImage})`;
+  } else if (description.includes("cloud")) {
+    return `url(${cloudyImage})`;
+  }
+  return ""; // Domyślne tło, jeśli opis nie pasuje
+};
 
 const Home: React.FC = () => {
   const [forecast, setForecast] = useState<ForecastData | null>(null);
+  const [backgroundImage, setBackgroundImage] = useState<string>("");
 
-  const handleSearch = async (city?: string, lat?: number, lon?: number) => {
+  const handleSearch = async (city: string, lat?: number, lon?: number) => {
     try {
       const data = await fetchWeather(city, lat, lon);
       setForecast(data);
+
+      if (data.daily.length > 0) {
+        const todayDescription = data.daily[0].description;
+        setBackgroundImage(getBackgroundImage(todayDescription));
+      }
     } catch (error) {
       console.error("Error fetching weather data:", error);
       setForecast(null);
+      setBackgroundImage("");
     }
   };
 
   return (
-    <div className="container">
-      <WeatherSearch onSearch={handleSearch} />
-      {forecast && <WeatherCard forecast={forecast} />}
+    <div
+      className="app-container"
+      style={{
+        backgroundImage,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="container mt-4">
+        <WeatherSearch onSearch={handleSearch} />
+        {forecast && <WeatherCard forecast={forecast} />}
+      </div>
     </div>
   );
 };

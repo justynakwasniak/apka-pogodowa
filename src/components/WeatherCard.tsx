@@ -12,7 +12,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ forecast }) => {
       <div className="row">
         {forecast.daily.map((day, index) => (
           <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div className="weather-card p-3 border rounded d-flex flex-column align-items-center">
+            <div
+              className="weather-card-content"
+              style={{ position: "relative", zIndex: 1 }}
+            >
               <h3>{new Date(day.date).toLocaleDateString()}</h3>
               <p>Temperature: {day.temp} °C</p>
               <p>Weather: {day.description}</p>
