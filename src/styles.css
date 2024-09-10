@@ -1,14 +1,31 @@
 body {
-  background-color: #f7f7f7;
+  background-color: #f4f5f7;
+  font-family: "Poppins", sans-serif;
 }
-
+.header-title {
+  color: #1a3b5d;
+  font-weight: bold;
+}
+.header {
+  background-color: #f4f5f7;
+}
 .card {
   margin-top: 20px;
 }
 
 .btn-custom {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #4c91b3;
+  color: #f4f5f7;
+  padding: 10px 20px;
+  flex-grow: 1;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-custom:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+.gap-2 {
+  gap: 10px; /* Odstęp między przyciskami */
 }
 
 .text-center {
@@ -16,7 +33,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -28,6 +45,18 @@ body {
 .error-message {
   color: red;
   text-align: center;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .daily-forecast {
@@ -39,21 +68,28 @@ body {
   border-bottom: none;
 }
 
-.weather-card:hover {
+.weather-card-content:hover {
   transform: translateY(-5px); /* Efekt unoszenia karty przy najechaniu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: rgba(29, 28, 28, 0.7);
 }
 
 .weather-card-content {
   background: rgba(
-    0,
-    0,
-    0,
+    29,
+    28,
+    28,
     0.5
   ); /* Przyciemni tło dla lepszej widoczności tekstu */
   border-radius: 0.5rem;
   padding: 1rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .weather-card img {
@@ -66,5 +102,15 @@ body {
 .app-container {
   min-height: 100vh;
   width: 100%;
-  color: white; /* Możesz dostosować kolor tekstu, aby pasował do tła */
+  color: #f4f5f7; /* Możesz dostosować kolor tekstu, aby pasował do tła */
+}
+
+.search-input {
+  width: 100%; /* Full width input */
+  font-size: 1rem; /* Larger font size to accommodate placeholder */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.search-input:focus {
+  border-color: #4c91b3; /* Zmiana koloru ramki */
+  box-shadow: 0 0 5px rgba(76, 145, 179, 0.5); /* Subtelny cień przy focusie */
 }

@@ -2,9 +2,9 @@ import React from "react";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-light py-3 mb-4">
+    <header className="header">
       <div className="container">
-        <h1 className="text-center">Weather App</h1>
+        <h1 className="text-center  header-title">WeatherWise</h1>
       </div>
     </header>
   );

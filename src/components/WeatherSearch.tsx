@@ -9,12 +9,14 @@ const WeatherSearch: React.FC<{
   const handleSearch = async () => {
     try {
       await onSearch(city);
+      setCity(""); // Czyszczenie pola tekstowego po pomyślnym wyszukiwaniu
       setError(null);
     } catch {
       setError("City not found or API error");
     }
   };
 
+  
   const handleLocationSearch = async () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -22,6 +24,7 @@ const WeatherSearch: React.FC<{
           const { latitude, longitude } = position.coords;
           try {
             await onSearch(undefined, latitude, longitude);
+            setCity(""); // Czyszczenie pola tekstowego po pomyślnym wyszukiwaniu
             setError(null);
           } catch {
             setError("Location not found or API error");
@@ -36,25 +39,32 @@ const WeatherSearch: React.FC<{
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6 mt-5">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <button onClick={handleSearch} className="btn-custom mt-2">
+    <div className="container d-flex justify-content-center">
+      <div className="col-md-6 mt-5">
+        <input
+          type="text"
+          className="form-control search-input"
+          placeholder="Which city are you exploring today?"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          onKeyDown={handleKeyDown} // Dodanie obsługi zdarzenia onKeyDown
+        />
+        <div className="d-flex justify-content-between mt-3 gap-2">
+          <button onClick={handleSearch} className="btn btn-custom">
             Search by City
           </button>
-          <button onClick={handleLocationSearch} className="btn-custom mt-2">
-            Use My Location
+          <button onClick={handleLocationSearch} className="btn btn-custom">
+            Let's locate you!
           </button>
-          {error && <p className="error-message">{error}</p>}
         </div>
+        {error && <p className="error-message">{error}</p>}
       </div>
     </div>
   );
