@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { WeatherData } from "../weatherTypes";
 
-const WeatherSearch: React.FC<{ onSearch: (city: string) => void }> = ({
-  onSearch,
-}) => {
+const WeatherSearch: React.FC<{
+  onSearch: (city?: string, lat?: number, lon?: number) => void;
+}> = ({ onSearch }) => {
   const [city, setCity] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -14,6 +12,27 @@ const WeatherSearch: React.FC<{ onSearch: (city: string) => void }> = ({
       setError(null);
     } catch {
       setError("City not found or API error");
+    }
+  };
+
+  const handleLocationSearch = async () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            await onSearch(undefined, latitude, longitude);
+            setError(null);
+          } catch {
+            setError("Location not found or API error");
+          }
+        },
+        () => {
+          setError("Unable to retrieve location");
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser");
     }
   };
 
@@ -29,7 +48,10 @@ const WeatherSearch: React.FC<{ onSearch: (city: string) => void }> = ({
             onChange={(e) => setCity(e.target.value)}
           />
           <button onClick={handleSearch} className="btn-custom mt-2">
-            Search
+            Search by City
+          </button>
+          <button onClick={handleLocationSearch} className="btn-custom mt-2">
+            Use My Location
           </button>
           {error && <p className="error-message">{error}</p>}
         </div>

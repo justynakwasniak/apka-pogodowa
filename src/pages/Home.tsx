@@ -7,13 +7,13 @@ import { fetchWeather } from "../api/fetchWeather";
 const Home: React.FC = () => {
   const [forecast, setForecast] = useState<ForecastData | null>(null);
 
-  const handleSearch = async (city: string) => {
+  const handleSearch = async (city?: string, lat?: number, lon?: number) => {
     try {
-      const data = await fetchWeather(city);
+      const data = await fetchWeather(city, lat, lon);
       setForecast(data);
     } catch (error) {
+      console.error("Error fetching weather data:", error);
       setForecast(null);
-      console.error("Failed to fetch weather data:", error);
     }
   };
 
