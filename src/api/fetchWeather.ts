@@ -11,7 +11,7 @@ const BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
 
 export const fetchWeather = async (
   city?: string,
-  lat?: number,git status
+  lat?: number,
 
   lon?: number
 ): Promise<ForecastData> => {
