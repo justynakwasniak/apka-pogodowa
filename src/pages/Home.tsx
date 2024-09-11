@@ -17,9 +17,12 @@ const getBackgroundImage = (description: string): string => {
     return `url(${sunnyImage})`;
   } else if (description.includes("snow")) {
     return `url(${snowImage})`;
+  } else if (description.includes("few clouds")) {
+    return `url(${sunnyImage})`;
   } else if (description.includes("cloud")) {
     return `url(${cloudyImage})`;
   }
+
   return `url(${rainbowImage})`; // Domyślne tło, jeśli opis nie pasuje
 };
 
