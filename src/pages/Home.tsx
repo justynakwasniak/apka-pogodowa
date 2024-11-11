@@ -9,7 +9,6 @@ import snowImage from "../images/snow.avif";
 import cloudyImage from "../images/cloudy.avif";
 import rainbowImage from "../images/rainbow.avif";
 
-// Funkcja do uzyskania odpowiedniego obrazu tła na podstawie opisu
 const getBackgroundImage = (description: string): string => {
   if (description.includes("rain")) {
     return `url(${rainImage})`;
@@ -23,14 +22,14 @@ const getBackgroundImage = (description: string): string => {
     return `url(${cloudyImage})`;
   }
 
-  return `url(${rainbowImage})`; // Domyślne tło, jeśli opis nie pasuje
+  return `url(${rainbowImage})`;
 };
 
 const Home: React.FC = () => {
   const [forecast, setForecast] = useState<ForecastData | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<string>(
     `url(${rainbowImage})`
-  ); // Początkowe tło
+  );
 
   const handleSearch = async (city?: string, lat?: number, lon?: number) => {
     try {
@@ -44,7 +43,7 @@ const Home: React.FC = () => {
     } catch (error) {
       console.error("Error fetching weather data:", error);
       setForecast(null);
-      setBackgroundImage(`url(${rainbowImage})`); // Ustawienie tła na tęczę w przypadku błędu
+      setBackgroundImage(`url(${rainbowImage})`);
     }
   };
 

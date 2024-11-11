@@ -13,7 +13,7 @@ const weatherIcons: Record<string, string> = {
   clear: sunIcon,
   rain: rainIcon,
   snow: snowIcon,
-  clouds: cloudIcon, // zmienić na 'clouds' lub inne, jeśli potrzebujesz
+  clouds: cloudIcon, 
   "clouds with sun": cloudSunIcon,
   scatteredclouds: cloudIcon,
   fewclouds: cloudSunIcon,

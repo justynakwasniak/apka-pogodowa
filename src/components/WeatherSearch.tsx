@@ -9,14 +9,13 @@ const WeatherSearch: React.FC<{
   const handleSearch = async () => {
     try {
       await onSearch(city);
-      setCity(""); // Czyszczenie pola tekstowego po pomyślnym wyszukiwaniu
+      setCity("");
       setError(null);
     } catch {
       setError("City not found or API error");
     }
   };
 
-  
   const handleLocationSearch = async () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -24,7 +23,7 @@ const WeatherSearch: React.FC<{
           const { latitude, longitude } = position.coords;
           try {
             await onSearch(undefined, latitude, longitude);
-            setCity(""); // Czyszczenie pola tekstowego po pomyślnym wyszukiwaniu
+            setCity("");
             setError(null);
           } catch {
             setError("Location not found or API error");
@@ -54,7 +53,7 @@ const WeatherSearch: React.FC<{
           placeholder="Which city are you exploring today?"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          onKeyDown={handleKeyDown} // Dodanie obsługi zdarzenia onKeyDown
+          onKeyDown={handleKeyDown}
         />
         <div className="d-flex justify-content-between mt-3 gap-2">
           <button onClick={handleSearch} className="btn btn-custom">
