@@ -10,7 +10,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="d-flex justify-content-between align-items-center p-3 border-bottom">
-      <h1 className="mb-0">Weather App</h1>
+      <h1 className="mb-0">WeatherWise</h1>
       <div>
         <button className="btn btn-outline-secondary btn-sm me-2" onClick={() => changeLanguage('pl')} aria-label="Zmień język na polski">PL</button>
         <button className="btn btn-outline-secondary btn-sm" onClick={() => changeLanguage('en')} aria-label="Change language to English">EN</button>

@@ -1,4 +1,4 @@
-# Weather App
+# Weather Wise
 
 A modern weather application built with Vite, React, and TypeScript. Features include localization, a responsive UI, and an intuitive hourly breakdown for any chosen day.
 
@@ -25,8 +25,8 @@ A modern weather application built with Vite, React, and TypeScript. Features in
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/justynakwasniak/apka-pogodowa.git
-   cd apka-pogodowa
+   git clone https://github.com/justynakwasniak/weather-wise.git
+   cd weather-wise
    ```
 
 2. **Install dependencies:**
