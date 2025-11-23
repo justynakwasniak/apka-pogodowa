@@ -6,7 +6,9 @@ import {
   DailyForecast,
 } from "../weatherTypes";
 
+
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
+// const API_KEY = "89b1ce64eff5ef41c79d534710f10a8d";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
 
 export const fetchWeather = async (
