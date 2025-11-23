@@ -1,51 +1,67 @@
-Weather App
+# Weather App
 
-This is a weather application built using Vite, React, JavaScript, TypeScript, HTML, and CSS. The app allows users to:
+A modern weather application built with Vite, React, and TypeScript. Features include localization, a responsive UI, and an intuitive hourly breakdown for any chosen day.
 
-Search for the weather in any city.
-Use location services to fetch weather data based on their current location.
-The app provides a three-day weather forecast, including today, tomorrow, and the day after. 
-For each day, users can view detailed weather information, such as temperature, humidity, pressure, and wind speed.
+## Features
 
-Features
+- **City Search:** Enter any city name to get an up-to-date forecast.
+- **Geolocation:** Get the forecast based on your current location.
+- **Daily & Hourly View:** Click any day to view an hourly (3-hour interval) forecast breakdown.
+- **Loading & Error States:** Visual progress indicator during API fetches, and clear messages if no results are found.
+- **Responsive Design:** Works seamlessly on both desktop and mobile devices.
+- **UX & Accessibility:** Screen reader support, aria-labels, high-contrast UI, and interactive language switcher.
+- **i18n Translations:** Toggle between English and Polish at any time; prepared for easy localization expansion.
 
-City Search: Enter the name of any city to get the current weather and a three-day forecast.
+## Technology Stack
 
-Current Location: Use the built-in locator to get weather information for your current location.
+- **Vite** – super-fast development and build tool
+- **React** – component-based UI
+- **TypeScript** – static type safety
+- **react-i18next & i18next** – translation management
+- **Bootstrap** – layout and styling
+- **OpenWeatherMap API** – live weather data
 
-Detailed Forecast: View the temperature, humidity, pressure, and wind speed for each of the next three days.
+## Setup & Installation
 
-Aesthetic Design: The app is designed to be both functional and visually appealing, enhancing user experience.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/justynakwasniak/apka-pogodowa.git
+   cd apka-pogodowa
+   ```
 
-Technologies Used
-Vite: For fast development and build tools.
-React: For building the user interface.
-JavaScript & TypeScript: For scripting and type safety.
-HTML & CSS: For structuring and styling the app.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Installation
-Clone the repository:
-bash
-git clone https://github.com/justynakwasniak/apka-pogodowa.git
+3. **Configure your OpenWeatherMap API key:**
+   > Note: The `.env` file is gitignored for security.
+   ```
+   VITE_OPEN_WEATHER_API_KEY=your_openweather_api_key_here
+   ```
+   You can get a free API key at: https://openweathermap.org/appid
 
-Navigate to the project directory:
-bash
-cd apka-pogodowa
+4. **Run the app in development mode:**
+   ```bash
+   npm run dev
+   ```
+   By default, the app will be accessible at [http://localhost:5173](http://localhost:5173)
 
-Install dependencies:
-bash
-npm install
+## Usage
 
-Start the development server:
-bash
-npm run dev
-Open your browser and go to http://localhost:3000 to view the application.
+- Use the search bar to enter a city and view its weather forecast.
+- Click "Locate me!" to fetch the forecast for your current location.
+- Click any daily forecast card to view detailed hourly data for that day.
+- Switch UI language in the top right (PL/EN).
+- In case of API errors or no results, you'll see a helpful message.
 
-Usage
-Use the search bar to enter a city name and view the weather forecast.
-Click the "Locate Me" button to fetch weather based on your current location.
+## Accessibility & Security
+- Buttons have proper contrast and aria-labels for screen reader support.
+- API keys are managed securely via environment variables (`.env`).
 
-Acknowledgments
-OpenWeatherMap API for providing weather data.
-Vite for the development environment.
-React for the front-end framework.
+## Credits
+
+- [OpenWeatherMap API](https://openweathermap.org/)
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [react-i18next](https://react.i18next.com/)
