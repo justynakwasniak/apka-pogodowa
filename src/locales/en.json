@@ -10,9 +10,12 @@
   "pressure": "Pressure",
   "wind_speed": "Wind Speed",
   "loading": "Loading...",
-  "no_results": "Nothing found for your query. Please try again or check spelling.",
+  "no_results": "Nothing found. Please try again or check spelling.",
   "city": "City",
   "not_found": "Page Not Found",
   "change_language": "Change language",
-  "date": "Date"
+  "date": "Date",
+  "hourly_forecast": "Hourly forecast for",
+  "back_to_daily": "Back to daily forecast",
+  "see_hourly_details": "See hourly details for {date}"
 }

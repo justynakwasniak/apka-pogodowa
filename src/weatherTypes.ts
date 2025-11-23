@@ -42,4 +42,5 @@ export interface DailyForecast {
 export interface ForecastData {
   city: string;
   daily: DailyForecast[];
+  hourly: ForecastEntry[];
 }

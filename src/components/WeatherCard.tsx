@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 interface WeatherCardProps {
   forecast: ForecastData;
+  onDayClick?: (date: string) => void;
 }
 const weatherIcons: Record<string, string> = {
   clear: sunIcon,
@@ -30,7 +31,7 @@ const normalizeDescription = (description: string): string => {
   return description.toLowerCase().replace(/\s+/g, "");
 };
 
-const WeatherCard: React.FC<WeatherCardProps> = ({ forecast }) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({ forecast, onDayClick }) => {
   const { t } = useTranslation();
   return (
     <div className="container mt-4">
@@ -39,9 +40,8 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ forecast }) => {
         {forecast.daily.map((day, index) => {
           const descriptionKey = normalizeDescription(day.description);
           const iconSrc = weatherIcons[descriptionKey];
-
           return (
-            <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4" role="button" tabIndex={0} onClick={() => onDayClick?.(day.date)} onKeyDown={(e) => { if(e.key === 'Enter'){ onDayClick?.(day.date); }}} aria-label={`Zobacz szczegóły godzinowe dla ${new Date(day.date).toLocaleDateString()}`} style={{ cursor: onDayClick ? 'pointer' : undefined }}>
               <div className="weather-card-content">
                 <h3>{t('date')}: {new Date(day.date).toLocaleDateString()}</h3>
                 <img src={iconSrc} alt={day.description} />

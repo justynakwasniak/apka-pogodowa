@@ -28,6 +28,7 @@ const getBackgroundImage = (description: string): string => {
 
 const Home: React.FC = () => {
   const [forecast, setForecast] = useState<ForecastData | null>(null);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<string>(
     `url(${rainbowImage})`
   );
@@ -49,11 +50,14 @@ const Home: React.FC = () => {
     } catch {
       setForecast(null);
       setBackgroundImage(`url(${rainbowImage})`);
-      setError("Nothing found for your query. Please try again or check spelling.");
+      setError("Nothing found. Please try again or check spelling.");
     } finally {
       setLoading(false);
     }
   };
+
+  const handleDayClick = (date: string) => setSelectedDay(date);
+  const handleBack = () => setSelectedDay(null);
 
   return (
     <div
@@ -80,7 +84,29 @@ const Home: React.FC = () => {
             {/* Optionally add an illustration/image here */}
           </div>
         )}
-        {!loading && forecast && <WeatherCard forecast={forecast} />}
+        {!loading && forecast && !selectedDay && (
+          <WeatherCard forecast={forecast} onDayClick={handleDayClick} />
+        )}
+        {!loading && forecast && selectedDay && (
+          <div className="hourly-view">
+            <button className="btn btn-custom mb-3" onClick={handleBack}>{t('back_to_daily')}</button>
+            <h3 className="text-center mb-3">{t('hourly_forecast')} {new Date(selectedDay).toLocaleDateString()}</h3>
+            <div className="row g-2 justify-content-center">
+              {forecast.hourly.filter(h => h.dt_txt.slice(0,10) === selectedDay.slice(0,10)).map((entry, idx) => (
+                <div className="col-12 col-md-4 mb-2" key={idx}>
+                  <div className="weather-card-content h-100">
+                    <strong>{new Date(entry.dt_txt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong>
+                    <p>{t('temperature')}: {Math.round(entry.main.temp)}°C</p>
+                    <p>{t('weather')}: {entry.weather[0].description}</p>
+                    <p>{t('humidity')}: {entry.main.humidity}%</p>
+                    <p>{t('pressure')}: {entry.main.pressure} hPa</p>
+                    <p>{t('wind_speed')}: {entry.wind.speed} m/s</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

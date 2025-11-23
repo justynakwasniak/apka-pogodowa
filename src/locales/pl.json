@@ -14,5 +14,8 @@
   "city": "Miasto",
   "not_found": "Strona nie znaleziona",
   "change_language": "Zmień język",
-  "date": "Data"
+  "date": "Data",
+  "hourly_forecast": "Godzinowa prognoza dla",
+  "back_to_daily": "Powrót do prognozy dziennej",
+  "see_hourly_details": "Zobacz szczegóły godzinowe dla {date}"
 }
