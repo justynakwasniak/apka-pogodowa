@@ -1,40 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
-const WeatherSearch: React.FC<{
+interface WeatherSearchProps {
   onSearch: (city?: string, lat?: number, lon?: number) => void;
-}> = ({ onSearch }) => {
-  const [city, setCity] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  loading: boolean;
+  error: string | null;
+}
+
+const WeatherSearch: React.FC<WeatherSearchProps> = ({ onSearch, loading, error }) => {
+  const [city, setCity] = React.useState("");
 
   const handleSearch = async () => {
-    try {
-      await onSearch(city);
-      setCity("");
-      setError(null);
-    } catch {
-      setError("City not found or API error");
-    }
+    await onSearch(city);
+    setCity("");
   };
 
   const handleLocationSearch = async () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            await onSearch(undefined, latitude, longitude);
-            setCity("");
-            setError(null);
-          } catch {
-            setError("Location not found or API error");
-          }
-        },
-        () => {
-          setError("Unable to retrieve location");
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser");
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        await onSearch(undefined, latitude, longitude);
+        setCity("");
+      });
     }
   };
 
@@ -54,16 +40,16 @@ const WeatherSearch: React.FC<{
           value={city}
           onChange={(e) => setCity(e.target.value)}
           onKeyDown={handleKeyDown}
+          disabled={loading}
         />
         <div className="d-flex justify-content-between mt-3 gap-2">
-          <button onClick={handleSearch} className="btn btn-custom">
-            Search by City
+          <button onClick={handleSearch} className="btn btn-custom" disabled={loading}>
+            {loading ? "Searching..." : "Search by City"}
           </button>
-          <button onClick={handleLocationSearch} className="btn btn-custom">
-            Let's locate you!
+          <button onClick={handleLocationSearch} className="btn btn-custom" disabled={loading}>
+            {loading ? "Locating..." : "Let's locate you!"}
           </button>
         </div>
-        {error && <p className="error-message">{error}</p>}
       </div>
     </div>
   );

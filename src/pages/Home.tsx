@@ -30,20 +30,26 @@ const Home: React.FC = () => {
   const [backgroundImage, setBackgroundImage] = useState<string>(
     `url(${rainbowImage})`
   );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async (city?: string, lat?: number, lon?: number) => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await fetchWeather(city, lat, lon);
       setForecast(data);
-
+      setError(null);
       if (data.daily.length > 0) {
         const todayDescription = data.daily[0].description;
         setBackgroundImage(getBackgroundImage(todayDescription));
       }
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
+    } catch (e) {
       setForecast(null);
       setBackgroundImage(`url(${rainbowImage})`);
+      setError("Nothing found for your query. Please try again or check spelling.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,8 +63,22 @@ const Home: React.FC = () => {
       }}
     >
       <div className="container mt-4">
-        <WeatherSearch onSearch={handleSearch} />
-        {forecast && <WeatherCard forecast={forecast} />}
+        <WeatherSearch onSearch={handleSearch} loading={loading} error={error} />
+        {loading && (
+          <div className="text-center mt-5">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+            <p>Loading...</p>
+          </div>
+        )}
+        {!loading && error && !forecast && (
+          <div className="text-center mt-5">
+            <p>{error}</p>
+            {/* Optionally add an illustration/image here */}
+          </div>
+        )}
+        {!loading && forecast && <WeatherCard forecast={forecast} />}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ const weatherIcons: Record<string, string> = {
   clear: sunIcon,
   rain: rainIcon,
   snow: snowIcon,
+  lightsnow: snowIcon,
   clouds: cloudIcon, 
   "clouds with sun": cloudSunIcon,
   scatteredclouds: cloudIcon,
@@ -45,7 +46,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ forecast }) => {
               <div className="weather-card-content">
                 <h3>{new Date(day.date).toLocaleDateString()}</h3>
                 <img src={iconSrc} alt={day.description} />
-                <p>Temperature: {day.temp} °C</p>
+                <p>Temperature: {Math.round(day.temp)} °C</p>
                 <p>Weather: {day.description}</p>
                 <p>Humidity: {day.humidity} %</p>
                 <p>Pressure: {day.pressure} hPa</p>
