@@ -8,6 +8,7 @@ import sunnyImage from "../images/sunny.avif";
 import snowImage from "../images/snow.avif";
 import cloudyImage from "../images/cloudy.avif";
 import rainbowImage from "../images/rainbow.avif";
+import { useTranslation } from 'react-i18next';
 
 const getBackgroundImage = (description: string): string => {
   if (description.includes("rain")) {
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleSearch = async (city?: string, lat?: number, lon?: number) => {
     setLoading(true);
@@ -44,7 +46,7 @@ const Home: React.FC = () => {
         const todayDescription = data.daily[0].description;
         setBackgroundImage(getBackgroundImage(todayDescription));
       }
-    } catch (e) {
+    } catch {
       setForecast(null);
       setBackgroundImage(`url(${rainbowImage})`);
       setError("Nothing found for your query. Please try again or check spelling.");
@@ -67,14 +69,14 @@ const Home: React.FC = () => {
         {loading && (
           <div className="text-center mt-5">
             <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
+              <span className="sr-only">{t('loading')}</span>
             </div>
-            <p>Loading...</p>
+            <p>{t('loading')}</p>
           </div>
         )}
         {!loading && error && !forecast && (
           <div className="text-center mt-5">
-            <p>{error}</p>
+            <p>{t('no_results')}</p>
             {/* Optionally add an illustration/image here */}
           </div>
         )}

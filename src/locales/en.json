@@ -1,0 +1,18 @@
+{
+  "search_city_placeholder": "Which city are you exploring today?",
+  "search_by_city": "Search by City",
+  "locate_me": "Let's locate you!",
+  "searching": "Searching...",
+  "locating": "Locating...",
+  "temperature": "Temperature",
+  "weather": "Weather",
+  "humidity": "Humidity",
+  "pressure": "Pressure",
+  "wind_speed": "Wind Speed",
+  "loading": "Loading...",
+  "no_results": "Nothing found for your query. Please try again or check spelling.",
+  "city": "City",
+  "not_found": "Page Not Found",
+  "change_language": "Change language",
+  "date": "Date"
+}

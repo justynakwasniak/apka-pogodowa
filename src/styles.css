@@ -25,7 +25,7 @@ body {
   transform: scale(1.05);
 }
 .gap-2 {
-  gap: 10px; /* Odstęp między przyciskami */
+  gap: 10px;
 }
 
 .text-center {
@@ -69,7 +69,7 @@ body {
 }
 
 .weather-card-content:hover {
-  transform: translateY(-5px); /* Efekt unoszenia karty przy najechaniu */
+  transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: rgba(29, 28, 28, 0.7);
 }
@@ -80,7 +80,7 @@ body {
     28,
     28,
     0.5
-  ); /* Przyciemni tło dla lepszej widoczności tekstu */
+  );
   border-radius: 0.5rem;
   padding: 1rem;
   position: relative;
@@ -102,15 +102,15 @@ body {
 .app-container {
   min-height: 100vh;
   width: 100%;
-  color: #f4f5f7; /* Możesz dostosować kolor tekstu, aby pasował do tła */
+  color: #f4f5f7; 
 }
 
 .search-input {
-  width: 100%; /* Full width input */
-  font-size: 1rem; /* Larger font size to accommodate placeholder */
+  width: 100%; 
+  font-size: 1rem; 
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .search-input:focus {
-  border-color: #4c91b3; /* Zmiana koloru ramki */
-  box-shadow: 0 0 5px rgba(76, 145, 179, 0.5); /* Subtelny cień przy focusie */
+  border-color: #4c91b3;
+  box-shadow: 0 0 5px rgba(76, 145, 179, 0.5); 
 }

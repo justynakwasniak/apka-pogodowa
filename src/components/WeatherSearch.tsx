@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 interface WeatherSearchProps {
   onSearch: (city?: string, lat?: number, lon?: number) => void;
@@ -6,8 +7,9 @@ interface WeatherSearchProps {
   error: string | null;
 }
 
-const WeatherSearch: React.FC<WeatherSearchProps> = ({ onSearch, loading, error }) => {
+const WeatherSearch: React.FC<WeatherSearchProps> = ({ onSearch, loading }) => {
   const [city, setCity] = React.useState("");
+  const { t } = useTranslation();
 
   const handleSearch = async () => {
     await onSearch(city);
@@ -36,18 +38,31 @@ const WeatherSearch: React.FC<WeatherSearchProps> = ({ onSearch, loading, error 
         <input
           type="text"
           className="form-control search-input"
-          placeholder="Which city are you exploring today?"
+          placeholder={t('search_city_placeholder')}
           value={city}
           onChange={(e) => setCity(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={loading}
+          aria-label={t('search_city_placeholder')}
         />
         <div className="d-flex justify-content-between mt-3 gap-2">
-          <button onClick={handleSearch} className="btn btn-custom" disabled={loading}>
-            {loading ? "Searching..." : "Search by City"}
+          <button
+            onClick={handleSearch}
+            className="btn btn-custom"
+            disabled={loading}
+            aria-label={t('search_by_city')}
+            style={{ color: '#fff' }}
+          >
+            {loading ? t('searching') : t('search_by_city')}
           </button>
-          <button onClick={handleLocationSearch} className="btn btn-custom" disabled={loading}>
-            {loading ? "Locating..." : "Let's locate you!"}
+          <button
+            onClick={handleLocationSearch}
+            className="btn btn-custom"
+            disabled={loading}
+            aria-label={t('locate_me')}
+            style={{ color: '#fff' }}
+          >
+            {loading ? t('locating') : t('locate_me')}
           </button>
         </div>
       </div>

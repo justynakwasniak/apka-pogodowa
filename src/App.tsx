@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
+import './i18n';
 
 const App: React.FC = () => {
   return (

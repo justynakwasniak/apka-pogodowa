@@ -1,0 +1,18 @@
+{
+  "search_city_placeholder": "Które miasto dziś zwiedzasz?",
+  "search_by_city": "Szukaj miasta",
+  "locate_me": "Zlokalizuj mnie!",
+  "searching": "Szukam...",
+  "locating": "Lokalizuję...",
+  "temperature": "Temperatura",
+  "weather": "Pogoda",
+  "humidity": "Wilgotność",
+  "pressure": "Ciśnienie",
+  "wind_speed": "Wiatr",
+  "loading": "Ładowanie...",
+  "no_results": "Nic nie znaleziono. Spróbuj ponownie lub sprawdź pisownię.",
+  "city": "Miasto",
+  "not_found": "Strona nie znaleziona",
+  "change_language": "Zmień język",
+  "date": "Data"
+}

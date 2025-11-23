@@ -5,6 +5,7 @@ import rainIcon from "../icons/rainIcon.png";
 import snowIcon from "../icons/snowIcon.png";
 import cloudIcon from "../icons/cloudIcon.png";
 import cloudSunIcon from "../icons/cloudSunIcon.png";
+import { useTranslation } from 'react-i18next';
 
 interface WeatherCardProps {
   forecast: ForecastData;
@@ -30,6 +31,7 @@ const normalizeDescription = (description: string): string => {
 };
 
 const WeatherCard: React.FC<WeatherCardProps> = ({ forecast }) => {
+  const { t } = useTranslation();
   return (
     <div className="container mt-4">
       <h2 className="text-center">{forecast.city}</h2>
@@ -37,20 +39,17 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ forecast }) => {
         {forecast.daily.map((day, index) => {
           const descriptionKey = normalizeDescription(day.description);
           const iconSrc = weatherIcons[descriptionKey];
-          console.log(
-            `Description: ${day.description}, Icon Key: ${descriptionKey}, Icon Src: ${iconSrc}`
-          );
 
           return (
             <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
               <div className="weather-card-content">
-                <h3>{new Date(day.date).toLocaleDateString()}</h3>
+                <h3>{t('date')}: {new Date(day.date).toLocaleDateString()}</h3>
                 <img src={iconSrc} alt={day.description} />
-                <p>Temperature: {Math.round(day.temp)} °C</p>
-                <p>Weather: {day.description}</p>
-                <p>Humidity: {day.humidity} %</p>
-                <p>Pressure: {day.pressure} hPa</p>
-                <p>Wind Speed: {day.windSpeed} m/s</p>
+                <p>{t('temperature')}: {Math.round(day.temp)} °C</p>
+                <p>{t('weather')}: {day.description}</p>
+                <p>{t('humidity')}: {day.humidity} %</p>
+                <p>{t('pressure')}: {day.pressure} hPa</p>
+                <p>{t('wind_speed')}: {day.windSpeed} m/s</p>
               </div>
             </div>
           );
